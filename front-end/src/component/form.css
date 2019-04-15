@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.loginbtn button{
+border: none;
+background-color: red;
+padding: 12px 20px;
+width: 100%;
+margin: 8px 0;
+border-radius: 5px;
+color: #dcdcdc;
+cursor: pointer;
+}
+button:hover{
+opacity: 0.8;
+}
+.form input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.form{
+    font-family: Roboto;   
+    width: 40vw;
+}
+.container{
+    padding: 13vh 30vw 0 30vw;
+    
+}

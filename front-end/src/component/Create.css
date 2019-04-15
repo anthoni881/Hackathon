@@ -1,0 +1,62 @@
+.create{
+    width: 100%;
+    justify-content: center; 
+
+}
+.inserttitle input{
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 1vh 0 0 5.5vw;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 7vh;
+}
+.insertdesc input{
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 1vh 0 0 1vw;    
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 17vh;
+}
+.content1{
+    font-family: Roboto;
+    align-items: center; 
+    justify-content: center;
+    padding: 1vh 0 0 30vw;
+}
+.content2{
+    font: Roboto;
+    width: 100%;
+    padding: 4vh 0 0 0;
+}
+.fileimg input{
+    padding: 0 0 3vh 42vw;
+}
+.month{
+    padding: 0 0 0 39vw;
+}
+.fileimg input{
+    font-size: 1.2vw;
+    font-family: Roboto;
+}
+.month input{
+    font-size: 1.2vw;
+    font-family: Roboto;
+}
+.submitbtn button{
+    border: none;
+    background-color: red;
+    padding: 12px 20px;
+    width: 20%;
+    margin: 8px 0;
+    border-radius: 10px;
+    color: #faefef;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    font-family: Roboto;
+    }
+    .submitbtn{
+        padding: 2vh 0 0 45vw;
+    }
