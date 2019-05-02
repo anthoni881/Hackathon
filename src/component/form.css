@@ -18,7 +18,8 @@ opacity: 0.8;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border-radius: 2px;
+    border: none;
+    border-bottom: solid #eeeeee 1px;
 }
 .form{
     font-family: Roboto;   

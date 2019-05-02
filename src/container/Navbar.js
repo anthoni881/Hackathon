@@ -5,7 +5,7 @@ import List from '../component/List'
 import './Navbar.css'
 
 const Navbar=()=>{
-    const [activeContent, setActiveContent] = useState("Create");
+    const [activeContent, setActiveContent] = useState("");
 
     const Buttons = props =>{
         if(props.name === "Create"){

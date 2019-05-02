@@ -1,23 +1,44 @@
 .create{
     width: 100%;
     justify-content: center; 
-
 }
 .inserttitle input{
     width: 30vw;
     padding: 12px 20px;
-    margin: 1vh 0 0 5.5vw;
+    margin: 1vh 0 0 4.6vw;
     box-sizing: border-box;
-    border-radius: 5px;
     height: 7vh;
+    border: none;
+    border-bottom: solid #dcdcdc 1px;  
 }
-.insertdesc input{
+.insertdate select{
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 1vh 0 0 3.3vw;
+    box-sizing: border-box;
+    height: 7vh;
+    border: none;
+    border-bottom: solid #dcdcdc 1px;    
+}
+/* .insertdesc input{
     width: 30vw;
     padding: 12px 20px;
     margin: 1vh 0 0 1vw;    
     box-sizing: border-box;
-    border-radius: 5px;
     height: 17vh;
+    border: none;
+    border-bottom: solid #dcdcdc 1px;    
+} */
+.insertdesc textarea{
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 1vh 0 0 1vw;    
+    box-sizing: border-box;
+    height: 17vh;
+    border: none;
+    border-bottom: solid #dcdcdc 1px;
+    font-family: Roboto;
+
 }
 .content1{
     font-family: Roboto;
@@ -28,19 +49,17 @@
 .content2{
     font: Roboto;
     width: 100%;
-    padding: 4vh 0 0 0;
+}
+
+.insertdate{
+    padding: 0 0 0 30.2vw;
 }
 .fileimg input{
-    padding: 0 0 3vh 42vw;
-}
-.month{
-    padding: 0 0 0 39vw;
-}
-.fileimg input{
+    margin: 2vh 0 3vh 42vw;
     font-size: 1.2vw;
     font-family: Roboto;
 }
-.month input{
+.insertdate input{
     font-size: 1.2vw;
     font-family: Roboto;
 }
@@ -49,7 +68,6 @@
     background-color: red;
     padding: 12px 20px;
     width: 20%;
-    margin: 8px 0;
     border-radius: 10px;
     color: #faefef;
     cursor: pointer;
@@ -57,6 +75,6 @@
     position: relative;
     font-family: Roboto;
     }
-    .submitbtn{
-        padding: 2vh 0 0 45vw;
-    }
+.submitbtn{
+    padding: 2vh 0 0 45vw;
+}

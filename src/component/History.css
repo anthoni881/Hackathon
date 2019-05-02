@@ -1,0 +1,48 @@
+.boxhistory{
+    min-width: 100%;
+    min-height: 100%;
+}
+.boxhistory img{
+    width: 12vw;
+    height: 25vh;
+    padding: 5vh 0vw 0 4vw
+}
+.contenthistory{
+padding: 2vh 0 0 ;
+flex-wrap: wrap;
+display: flex;
+justify-content: center;
+}
+.contentgetapi{
+    width: 320px;
+    padding: 10px ;
+    border: 2px solid gray;
+    margin: 5%;
+}
+.namedata{
+    display: flex;
+
+}
+.nameemail{
+    display: flex;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 15%;
+    margin: 2vh 2vh 2vh 2vh;
+    border-radius: 5px;
+  }
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+  
+.container {
+    padding: 2px 16px 2px 2px;
+}
+.card img{
+    width: 100%;
+    display: flex;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
