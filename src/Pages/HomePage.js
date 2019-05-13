@@ -1,16 +1,11 @@
-import React from 'react'
-import HeaderH from '../component/headerHomepage'
-import Login from '../container/Login'
+import React from "react";
+import Login from "../container/Login";
 
-const HomePage = ()=>{
-
-    return(
-        <div>
-        <div className="header">
-            <HeaderH></HeaderH>
-        </div>
-        <Login></Login>
-        </div>
-    )
-}
+const HomePage = () => {
+  return (
+    <div>
+      <Login />
+    </div>
+  );
+};
 export default HomePage;

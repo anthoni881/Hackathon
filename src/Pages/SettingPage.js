@@ -1,16 +1,13 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from '../container/Navbar'
-import Header from '../component/headertitle'
-import './setting.css'
+import Navbar from "../container/Navbar";
+import "./setting.css";
 
-const SetPage =()=>{
-return(
-    <div>
-        <Header>
-        </Header>
-        <Navbar></Navbar>
+const SetPage = () => {
+  return (
+    <div className="parentSetting">
+      <Navbar />
     </div>
-    )
-}
-export default SetPage
+  );
+};
+export default SetPage;

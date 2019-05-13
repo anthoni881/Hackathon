@@ -1,35 +1,40 @@
-import React,{useState} from 'react'
-import Create from '../component/Create'
-import History from '../component/History'
-import List from '../component/List'
-import './Navbar.css'
+import React, { useState } from "react";
+import Create from "../component/Create";
+import History from "../component/History";
+import List from "../component/List";
+import Logoutbtn from "../component/Logoutbtn";
+import "./Navbar.css";
 
-const Navbar=()=>{
-    const [activeContent, setActiveContent] = useState("");
+const Navbar = () => {
+  const [activeContent, setActiveContent] = useState("");
 
-    const Buttons = props =>{
-        if(props.name === "Create"){
-            return <Create></Create>
-        }
-        else if(props.name === "History"){
-            return <History></History>
-        }
-        else{
-            return <List></List>
-        }
+  const ButtonNavbar = props => {
+    if (props.name === "Create") {
+      return <Create />;
+    } else if (props.name === "History") {
+      return <History />;
+    } else {
+      return <List />;
     }
-return(
+  };
+  return (
     <div className="cont">
-        <div className="menu">
-        <button className="buttons" onClick={()=> setActiveContent("Create")}>Create</button>
-        <button className="buttons" onClick={()=> setActiveContent("History")}>History</button>
-        <button className="buttons" onClick={()=> setActiveContent("List")}>List</button>
-            </div>
-        <div className="activecontent">
-        <Buttons name={activeContent}></Buttons>
-        </div>
-
+      <div className="menu">
+        <button className="buttons" onClick={() => setActiveContent("Create")}>
+          Create
+        </button>
+        <button className="buttons" onClick={() => setActiveContent("History")}>
+          History
+        </button>
+        <button className="buttons" onClick={() => setActiveContent("List")}>
+          List
+        </button>
+        <Logoutbtn className="logoutbtn" type="submit" />
+      </div>
+      <div className="activecontent">
+        <ButtonNavbar name={activeContent} />
+      </div>
     </div>
-)
-}
-export default Navbar
+  );
+};
+export default Navbar;
