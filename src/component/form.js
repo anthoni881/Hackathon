@@ -1,89 +1,128 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./form.css";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Gambar from "../Images/gambar.jpg";
+import axios from "axios";
+
+const ApplicationContext = React.createContext();
+const ApplicationProvider = props => {
+  const { children } = props;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const applicationValue = {
+    isLoggedIn,
+    setIsLoggedIn
+  };
+  return (
+    <ApplicationContext.Provider value={{ ...applicationValue }}>
+      {children}
+    </ApplicationContext.Provider>
+  );
+};
+
+const ApplicationConsumer = ApplicationContext.Consumer;
+export { ApplicationProvider, ApplicationConsumer, ApplicationContext };
 
 export const ButtonGlobal = props => {
   return (
-    // <Link to="/setting">
     <div className="buttonlogin">
-      <button onClick={props.onClick}>{props.name}</button>
+      <button
+        disabled={props.isDisabled}
+        onClick={props.onClick}
+        type={props.type}
+        required={props.required}
+      >
+        {props.name}
+      </button>
     </div>
-    // </Link>
   );
 };
 export const InputText = props => {
   return (
     <div className="inputtextlogin">
-      <form>
-        <input
-          className={props.className}
-          type={props.type}
-          placeholder={props.placeholder}
-          onChange={props.onChange}
-          onKeyUp={props.onKeyUp}
-          required
-        />
-      </form>
+      <input
+        className={props.className}
+        type={props.type}
+        placeholder={props.placeholder}
+        onChange={props.onChange}
+        onKeyUp={props.onKeyUp}
+        value={props.value}
+        required
+      />
     </div>
   );
 };
+
 const Useridform = () => {
   const [uname, setUname] = useState("");
   const [pwd, setPwd] = useState("");
+  const app = useContext(ApplicationContext);
 
-  const postApiFetch = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        uname: uname,
-        pwd: pwd
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));
-  };
-  const changeUname = text => {
-    setUname(text);
-    console.log(uname);
+  const postApiAxios = async () => {
+    const LoginReq = {
+      username: uname,
+      password: pwd
+    };
+    try {
+      const result = await axios.post(
+        "http://10.58.89.27:8900/v1/storeLogin",
+        LoginReq
+      );
+      const user = {
+        storeId: result.data.storeId
+      };
+      console.log(user);
+      localStorage.setItem("userInfo", JSON.stringify(user));
+      app.setIsLoggedIn(true);
+    } catch (error) {
+      alert(error);
+      setUname("");
+      setPwd("");
+    }
   };
 
-  const changePwd = text => {
-    setPwd(text);
-    console.log(pwd);
+  const changeUname = event => {
+    setUname(event.target.value);
+  };
+  const changePwd = event => {
+    setPwd(event.target.value);
+  };
+  const handleSubmit = () => {
+    if (uname.length === 0 || pwd.length === 0) {
+      return alert("Masukan Password dan User dulu X");
+    } else {
+      // app.setIsLoggedIn(true);
+      postApiAxios();
+    }
   };
 
-  return (
+  return app.isLoggedIn ? (
+    <Redirect to="/setting" />
+  ) : (
     <div className="columnLogin">
       <div className="signin">Sign In</div>
       <div className="inputformlogin">
         <div className="useridform">
-          <form>
-            <label>User Id</label>
-            <InputText
-              type="text"
-              placeholder="Input User Id"
-              onChange={event => changeUname(event.target.value)}
-              onKeyUp={event => changePwd(event.target.value)}
-              required
-            />
-          </form>
+          <label>User Id</label>
+          <InputText
+            type="text"
+            placeholder="Input User Id"
+            onKeyUp={changeUname}
+            value={uname}
+            onChange={changeUname}
+          />
         </div>
 
         <div className="passwordform">
           <label>Password</label>
           <InputText
-            type="text"
+            type="password"
             placeholder="Input Password"
-            onChange={event => changeUname(event.target.value)}
-            onKeyUp={event => changePwd(event.target.value)}
-            required
+            onChange={changePwd}
+            value={pwd}
+            onKeyUp={changePwd}
           />
         </div>
-        <ButtonGlobal onClick={() => postApiFetch()} name="Login" />
+        <ButtonGlobal onClick={handleSubmit} name="Login" />
       </div>
     </div>
   );

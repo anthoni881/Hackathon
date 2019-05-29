@@ -2,18 +2,62 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./History.css";
 
+const Info = props => {
+  const { infoshow, okClick } = props;
+  const [infoData, setInfoData] = useState([]);
+  const getApiAxios = async () => {
+    const result = await axios.get(
+      "https://beneruns.free.beeceptor.com/v1/offerStore/getOffer"
+    );
+    console.log(result.data);
+    setInfoData(result.data);
+  };
+  useEffect(() => {
+    getApiAxios();
+  }, []);
+  return (
+    <div className={infoshow ? "infoshow" : "infoclose"}>
+      {Object.keys(infoData).map(key => (
+        <div className="show" key={key}>
+          <h2 onClick={okClick}>&times;</h2>
+          <div className="parent">
+            <div className="content-container-right">
+              <img src={infoData[1].image} alt="Image" />
+            </div>
+            <div className="content-container-left">
+              <div className="title-show">{infoData[1].title}</div>
+              <div className="message-show-container">
+                {infoData[1].message}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 const MoButton = props => {
+  const { MoClick } = props;
   return (
     <div className="parentbtnmo">
-      <button className="buttonMo">{props.children}</button>
+      <button className="buttonMo" onClick={MoClick}>
+        {props.children}
+      </button>
     </div>
   );
 };
 const MonthB = () => {
+  const [click, setClick] = useState(false);
+  const Clicked = () => {
+    setClick(true);
+  };
+  const Closed = () => {
+    setClick(false);
+  };
   return (
     <div className="parentMB">
       <div className="MB">
-        <MoButton>Januari</MoButton>
+        <MoButton MoClick={Clicked}>Januari</MoButton>
         <MoButton>Febuari</MoButton>
         <MoButton>Maret</MoButton>
         <MoButton>April</MoButton>
@@ -26,6 +70,7 @@ const MonthB = () => {
         <MoButton>November</MoButton>
         <MoButton>Desember</MoButton>
       </div>
+      <Info infoshow={click} okClick={Closed} />
     </div>
   );
 };
@@ -62,7 +107,7 @@ const History = () => {
 //     getApiAxios();
 //   }, []);
 //   return (
-//     <div className={isPopupShown ? "popUpShow" : "popUpClose"}>
+//     <div className={isPopupShown ? "infoShow" : "infoClose"}>
 //       <div className="contenthistory">
 //         {apiData.map(data => (
 //           <div className="card" key={data.id}>

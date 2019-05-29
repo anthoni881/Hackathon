@@ -1,4 +1,11 @@
+.logoutbtn {
+  margin-left: 50vw;
+  margin-right: 8vw;
+  display: flex;
+  padding-top: 2vh;
+}
 .logoutbtn button {
+  width: 100%;
   border: none;
   background-color: white;
   padding: 5px 7px;

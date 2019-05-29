@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Create.css";
 import axios from "axios";
-import { InputText, ButtonGlobal } from "./form";
+import { InputText } from "./form";
 
 const Notif = props => {
   const { popupshow, okClick } = props;
@@ -16,50 +16,94 @@ const Notif = props => {
 };
 const FormCreate = () => {
   const [titleState, setTitleState] = useState("");
+  const [storeId, setStoreId] = useState("");
   const [messageState, setMessageState] = useState("");
-  const [picState, setPicState] = useState("");
-  const [monthState, setMonthsState] = useState("Jan");
+  const [picState, setPicState] = useState(null);
+  const [monthState, setMonthsState] = useState("January");
+  const errors = validate(titleState, messageState);
+  const isDisabled = Object.keys(errors).some(x => errors[x]);
 
+  const getAndSetBase64 = (file, callback) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      callback(reader.result);
+    };
+  };
+  const fileChangedHandler = event => {
+    getAndSetBase64(event.target.files[0], value => {
+      setPicState(value);
+    });
+  };
+  localStorage.setItem("testObject", JSON.stringify(storeId));
+  const info = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(info);
   const postApiAxios = async () => {
+    const imageSplit = picState.split(",")[1];
+    const Hallo = {
+      image: imageSplit
+    };
     const Hallew = {
+      storeId: info.storeId,
       title: titleState,
       message: messageState,
       month: monthState
     };
-    await axios.post("https://wkwkw.free.beeceptor.com", Hallew).then(res => {
-      console.log(res.data);
-    });
+    await axios
+      .post("http://10.58.89.27:8900/v1/offer/postOffer", Hallew)
+      .then(res => {});
+    // await axios
+    //   .post("http://10.58.89.27:8900/v1/offer/uploadImage/50", Hallo)
+    //   .then(res => {
+    //     console.log(res.data);
+    //   });
   };
-  const changeTitle = text => {
-    setTitleState(text);
-    console.log(titleState);
+  const changeTitle = event => {
+    setTitleState(event.target.value);
   };
-  const changeMessage = text => {
-    setMessageState(text);
-    console.log(messageState);
+  const changeMessage = event => {
+    setMessageState(event.target.value);
   };
   const changeMonth = month => {
     setMonthsState(month);
-    console.log(month);
   };
 
   const Submitbtn = props => {
     const { submitClicked } = props;
-    const onClick = () => {
+    const handleSubmit = event => {
+      if (!canBeSubmitted()) {
+        event.preventDefault();
+        return;
+      }
       postApiAxios();
       submitClicked();
+      setMessageState("");
+      setTitleState("");
+      setMonthsState("Januari");
     };
     return (
       <div className="submitbtn">
-        <button onClick={onClick}>Submit</button>
+        <button disabled={props.isDisabled} onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
     );
   };
-  const selectHandler = text => {
-    setPicState(text);
-    console.log(picState);
-  };
-  const month = ["Jan", "Feb", "Mar"];
+
+  const month = [
+    "January",
+    "Febuari  ",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember"
+  ];
 
   const Month = () => {
     return (
@@ -69,18 +113,6 @@ const FormCreate = () => {
             {data}
           </option>
         ))}
-        {/* <option value="Januari">Januari</option>
-        <option value="Febuari">Febuari</option>
-        <option value="Maret">Maret</option>
-        <option value="April">April</option>
-        <option value="Mei">Mei</option>
-        <option value="Juni">Juni</option>
-        <option value="Juli">Juli</option>
-        <option value="Agustus">Agustus</option>
-        <option value="September">September</option>
-        <option value="Oktober">Oktober</option>
-        <option value="November">November</option>
-        <option value="Desember">Desember</option> */}
       </select>
     );
   };
@@ -92,6 +124,18 @@ const FormCreate = () => {
       </div>
     );
   };
+  const canBeSubmitted = () => {
+    const errors = validate(titleState, messageState);
+    const isDisabled = Object.keys(errors).some(x => errors[x]);
+    return !isDisabled;
+  };
+  function validate(titleState, messageState) {
+    return {
+      title: titleState.length === 0,
+      message: messageState.length === 0,
+      image: picState === null
+    };
+  }
 
   const [click, setClick] = useState(false);
   const Clicked = () => {
@@ -102,38 +146,46 @@ const FormCreate = () => {
   };
 
   return (
-    <div className="Create">
-      <div className="content">
-        <div className="inserttitle">
-          <label className="labelname">Title</label>
-          <InputText
-            className="textname"
-            type="text"
-            placeholder="Enter Title"
-            onChange={event => changeTitle(event.target.value)}
-            onKeyUp={event => changeTitle(event.target.value)}
-            required
-          />
-        </div>
+    <div className="backParent">
+      <div className="Create">
+        <div className="content">
+          <div className="inserttitle">
+            <label className="labelname">Title</label>
+            <InputText
+              className="textname"
+              type="text"
+              placeholder="Enter Title"
+              value={titleState}
+              onChange={changeTitle}
+              onKeyUp={changeTitle}
+              required
+            />
+          </div>
 
-        <div className="insertdesc">
-          <label className="labelname">Description</label>
-          <textarea
-            className="textname"
-            type="text"
-            placeholder="Enter Description"
-            onChange={event => changeMessage(event.target.value)}
-            onKeyUp={event => changeMessage(event.target.value)}
-            required
-          />
+          <div className="insertdesc">
+            <label className="labelname">Description</label>
+            <textarea
+              className="textname"
+              type="text"
+              placeholder="Enter Description"
+              value={messageState}
+              onChange={changeMessage}
+              onKeyUp={changeMessage}
+              required
+            />
+          </div>
+          <Insertdate />
+          <div className="fileimg">
+            <input
+              type="file"
+              name="pic"
+              onChange={event => fileChangedHandler(event)}
+            />
+          </div>
+          <Submitbtn isDisabled={isDisabled} submitClicked={Clicked} />
         </div>
-        <Insertdate />
-        <div className="fileimg">
-          <input type="file" name="pic" onChange={() => selectHandler()} />
-        </div>
-        <Submitbtn submitClicked={Clicked} />
+        <Notif popupshow={click} okClick={Closed} />
       </div>
-      <Notif popupshow={click} okClick={Closed} />
     </div>
   );
 };

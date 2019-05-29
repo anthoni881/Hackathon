@@ -13,6 +13,7 @@ input[type] {
   color: white;
   background-color: black;
 }
+
 .signin {
   font-size: 3.5vw;
 }
@@ -79,6 +80,7 @@ input[type] {
   display: flex;
   justify-content: center;
 }
+
 .imagelogin {
   width: 90%;
   height: 80%;
