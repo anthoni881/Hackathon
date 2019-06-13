@@ -47,11 +47,10 @@ const FormCreate = () => {
       storeId: info.storeId,
       title: titleState,
       message: messageState,
-      month: monthState
+      month: monthState,
+      photoUrl: imageSplit
     };
-    await axios
-      .post("http://10.58.89.27:8900/v1/offer/postOffer", Hallew)
-      .then(res => {});
+    await axios.post("https://asdasd.free.beeceptor.com", Hallew);
     // await axios
     //   .post("http://10.58.89.27:8900/v1/offer/uploadImage/50", Hallo)
     //   .then(res => {

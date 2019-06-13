@@ -72,7 +72,7 @@ const Useridform = () => {
       };
       console.log(user);
       localStorage.setItem("userInfo", JSON.stringify(user));
-      app.setIsLoggedIn(true);
+      // app.setIsLoggedIn(true);
     } catch (error) {
       alert(error);
       setUname("");
@@ -90,7 +90,7 @@ const Useridform = () => {
     if (uname.length === 0 || pwd.length === 0) {
       return alert("Masukan Password dan User dulu X");
     } else {
-      // app.setIsLoggedIn(true);
+      app.setIsLoggedIn(true);
       postApiAxios();
     }
   };
