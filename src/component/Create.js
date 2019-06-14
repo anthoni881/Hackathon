@@ -39,18 +39,18 @@ const FormCreate = () => {
   const info = JSON.parse(localStorage.getItem("userInfo"));
   console.log(info);
   const postApiAxios = async () => {
-    const imageSplit = picState.split(",")[1];
-    const Hallo = {
-      image: imageSplit
-    };
+    const imageSplit = picState.split(",");
+    // const Hallo = {
+    //   image: imageSplit
+    // };
     const Hallew = {
       storeId: info.storeId,
       title: titleState,
       message: messageState,
       month: monthState,
-      photoUrl: imageSplit
+      img: imageSplit
     };
-    await axios.post("https://asdasd.free.beeceptor.com", Hallew);
+    await axios.post("http://10.58.93.51:8900/v1/offer", Hallew);
     // await axios
     //   .post("http://10.58.89.27:8900/v1/offer/uploadImage/50", Hallo)
     //   .then(res => {

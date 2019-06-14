@@ -59,12 +59,12 @@ const Useridform = () => {
 
   const postApiAxios = async () => {
     const LoginReq = {
-      username: uname,
+      storeName: uname,
       password: pwd
     };
     try {
       const result = await axios.post(
-        "http://10.58.89.27:8900/v1/storeLogin",
+        "http://10.58.93.51:8900/v1/storeLogin",
         LoginReq
       );
       const user = {
@@ -72,7 +72,7 @@ const Useridform = () => {
       };
       console.log(user);
       localStorage.setItem("userInfo", JSON.stringify(user));
-      // app.setIsLoggedIn(true);
+      app.setIsLoggedIn(true);
     } catch (error) {
       alert(error);
       setUname("");
@@ -90,7 +90,7 @@ const Useridform = () => {
     if (uname.length === 0 || pwd.length === 0) {
       return alert("Masukan Password dan User dulu X");
     } else {
-      app.setIsLoggedIn(true);
+      // app.setIsLoggedIn(true);
       postApiAxios();
     }
   };

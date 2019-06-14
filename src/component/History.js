@@ -5,7 +5,7 @@ const Info = props => {
   const [infoData, setInfoData] = useState([]);
   const getApiAxios = async () => {
     const result = await axios.get(
-      "https://anthoni.free.beeceptor.com/v1/offerStore/getOffer"
+      "https://monyet.free.beeceptor.com/v1/offerStore/getOffer"
     );
     setInfoData(result.data.offers);
   };

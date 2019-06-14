@@ -12,17 +12,21 @@
 }
 
 .show {
-  position: absolute;
-  height: 25vh;
-  width: 25vw;
-  color: white;
-  display: grid;
+  position: relative;
+  height: 35vh;
+  width: 35vw;
+  margin: 20px;
+  margin-top: 30px;
+  color: black;
+  background-color: white !important;
 }
 
 .parent {
   height: 100%;
-  display: grid;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .content-container-left {
   left: 0;
@@ -34,6 +38,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white !important;
 }
 
 .message-show-container {
@@ -48,6 +53,7 @@
   height: 100%;
   width: 50%;
   top: 0;
+  background-color: white !important;
 }
 .content-container-right img {
   width: 100%;
@@ -57,14 +63,16 @@
 .title-show {
   text-align: center;
   width: 100% !important;
-  height: 10% !important;
-  padding: 1.5vh 0 3vh 0;
+  height: 20% !important;
+  margin-top: -13vh;
   font-size: 1em;
   font-weight: 500;
+  background-color: white !important;
 }
 .message-show-container {
   width: 90%;
-  height: 40%;
+  height: 40% !important;
   overflow-wrap: break-word;
   font-size: 0.8em;
+  background-color: white !important;
 }
