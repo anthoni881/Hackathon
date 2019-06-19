@@ -1,13 +1,22 @@
 import React, { useState, useContext } from "react";
 import "./form.css";
 import { Redirect } from "react-router-dom";
-import Gambar from "../Images/gambar.jpg";
+import Gambar from "../Images/Gambar.jpeg";
+import Gambar2 from "../Images/gambar.jpg";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 
 const ApplicationContext = React.createContext();
 const ApplicationProvider = props => {
   const { children } = props;
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let init;
+  if (localStorage.getItem("userInfo")) {
+    init = true;
+  } else {
+    init = false;
+  }
+  const [isLoggedIn, setIsLoggedIn] = useState(init);
   const applicationValue = {
     isLoggedIn,
     setIsLoggedIn
@@ -59,22 +68,20 @@ const Useridform = () => {
 
   const postApiAxios = async () => {
     const LoginReq = {
-      storeName: uname,
+      username: uname,
       password: pwd
     };
     try {
       const result = await axios.post(
-        "http://10.58.93.51:8900/v1/storeLogin",
+        "http://10.58.89.92:8900/v1/storeLogin",
         LoginReq
       );
       const user = {
         storeId: result.data.storeId
       };
-      console.log(user);
       localStorage.setItem("userInfo", JSON.stringify(user));
       app.setIsLoggedIn(true);
     } catch (error) {
-      alert(error);
       setUname("");
       setPwd("");
     }
@@ -88,7 +95,7 @@ const Useridform = () => {
   };
   const handleSubmit = () => {
     if (uname.length === 0 || pwd.length === 0) {
-      return alert("Masukan Password dan User dulu X");
+      return alert("Masukan Password dan User Anda");
     } else {
       // app.setIsLoggedIn(true);
       postApiAxios();
@@ -96,7 +103,7 @@ const Useridform = () => {
   };
 
   return app.isLoggedIn ? (
-    <Redirect to="/setting" />
+    <Redirect to="/home" />
   ) : (
     <div className="columnLogin">
       <div className="signin">Sign In</div>
@@ -136,8 +143,26 @@ const FormLogin = () => {
       </div>
       <div className="imageForm">
         <div className="imagelogin">
-          <img src={Gambar} />
+          <Carousel autoPlay>
+            <div>
+              <img src={Gambar} />
+            </div>
+            <div>
+              <img src={Gambar2} />
+            </div>
+          </Carousel>
         </div>
+      </div>
+    </div>
+  );
+};
+const LoginNotif = props => {
+  const { popupshow, okClick } = props;
+  return (
+    <div className={popupshow ? "notifshow" : "notifclose"}>
+      <div className="pop">
+        <h2 onClick={okClick}>&times;</h2>
+        <p>Selamat! Promo Anda telah ditambahkan.</p>
       </div>
     </div>
   );

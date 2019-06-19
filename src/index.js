@@ -9,12 +9,10 @@ const App = () => {
   return (
     <div className="App">
       <ApplicationProvider>
-        <React.Fragment>
-          <BrowserRouter>
-            <Route exact path="/" component={Login} />
-            <Route path="/setting" component={Page} />
-          </BrowserRouter>
-        </React.Fragment>
+        <BrowserRouter>
+          <Route path="/login" component={Login} />
+          <Route exact path="/home" component={Page} />
+        </BrowserRouter>
       </ApplicationProvider>
     </div>
   );

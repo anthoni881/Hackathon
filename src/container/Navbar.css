@@ -16,7 +16,7 @@
   color: #5260c4;
   border: none;
   position: relative;
-  font-size: 1.1em;
+  font-size: 1.5em;
   cursor: pointer;
   transition: 800ms ease all;
   outline: none;
@@ -46,4 +46,24 @@
 .buttons:hover:after {
   width: 100%;
   transition: 800ms ease all;
+}
+@media only screen and (min-width: 2750px) and (max-width: 3200px) {
+  .buttons {
+    font-size: 60px;
+  }
+}
+@media only screen and (min-width: 3400px) {
+  .buttons {
+    font-size: 70px;
+  }
+}
+@media only screen and (min-width: 1500px) and (max-width: 2000px) {
+  .buttons {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 2001px) and (max-width: 2749px) {
+  .buttons {
+    font-size: 50px;
+  }
 }

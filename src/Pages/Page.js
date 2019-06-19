@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../container/Navbar";
 const Page = () => {
   return (

@@ -13,7 +13,21 @@ input[type] {
   color: white;
   background-color: black;
 }
-
+.control-dots {
+  background-color: transparent;
+}
+.carousel .control-prev.control-arrow:before {
+  border-right: 8px solid black !important;
+}
+.carousel .control-next.control-arrow:before {
+  border-left: 8px solid black !important;
+}
+.carousel .control-dots .dot {
+  background: black !important;
+}
+.thumb {
+  opacity: 0 !important;
+}
 .signin {
   font-size: 3.5vw;
 }
@@ -25,8 +39,8 @@ input[type] {
   animation: imagemove 3s;
 }
 .imagelogin {
-  width: 70%;
-  height: 50;
+  width: 75% !important;
+  height: 99%;
 }
 .loginForm {
   width: 40vw;
@@ -73,7 +87,6 @@ input[type] {
 }
 .imageForm {
   width: 60vw;
-  height: 100vh;
   position: relative;
   -webkit-animation: imagemove 3s;
   animation: imagemove 3s;
@@ -90,6 +103,9 @@ input[type] {
   width: 100%;
   height: 100%;
   background-color: yellow;
+}
+.errorlogin {
+  background-color: red !important;
 }
 .buttonlogin button {
   width: 100%;
@@ -180,5 +196,26 @@ input[type] {
   100% {
     right: 0%;
     opacity: 1;
+  }
+}
+@media only screen and (min-width: 3400px) {
+  .buttonlogin {
+    width: 100%;
+    height: 150px;
+    margin-top: 50px;
+  }
+  .buttonlogin button {
+    font-size: 40px;
+  }
+  .inputformlogin label {
+    font-size: 40px;
+  }
+  .inputtextlogin input {
+    width: 89.7%;
+    font-size: 50px;
+    height: 140px;
+  }
+  .signin {
+    font-size: 120px;
   }
 }

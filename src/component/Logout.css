@@ -63,3 +63,31 @@
   box-shadow: 0px 0px 0px rgba(15, 165, 60, 0);
   background: orangered;
 }
+@media only screen and (min-width: 2750px) and(max-width:3200px) {
+  .logoutbtn button {
+    width: 350px;
+    height: 130px;
+    font-size: 50px;
+  }
+}
+@media only screen and (min-width: 3400px) {
+  .logoutbtn button {
+    width: 430px;
+    height: 160px;
+    font-size: 70px;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 2000px) {
+  .logoutbtn button {
+    width: 170px;
+    height: 70px;
+    font-size: 30px;
+  }
+}
+@media only screen and (min-width: 2001px) and (max-width: 2749px) {
+  .logoutbtn button {
+    width: 200px;
+    height: 100px;
+    font-size: 30px;
+  }
+}

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Create.css";
 import axios from "axios";
 import { InputText } from "./form";
 
-const Notif = props => {
+export const Notif = props => {
   const { popupshow, okClick } = props;
   return (
     <div className={popupshow ? "notifshow" : "notifclose"}>
@@ -37,25 +37,21 @@ const FormCreate = () => {
   };
   localStorage.setItem("testObject", JSON.stringify(storeId));
   const info = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(info);
   const postApiAxios = async () => {
-    const imageSplit = picState.split(",");
-    // const Hallo = {
-    //   image: imageSplit
-    // };
-    const Hallew = {
+    const imageSplit = picState.split(",")[1];
+    const createpost = {
       storeId: info.storeId,
       title: titleState,
       message: messageState,
       month: monthState,
       img: imageSplit
     };
-    await axios.post("http://10.58.93.51:8900/v1/offer", Hallew);
-    // await axios
-    //   .post("http://10.58.89.27:8900/v1/offer/uploadImage/50", Hallo)
-    //   .then(res => {
-    //     console.log(res.data);
-    //   });
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    await axios.post("http://10.58.89.92:8900/v1/offer/postOffer", createpost, {
+      headers
+    });
   };
   const changeTitle = event => {
     setTitleState(event.target.value);
