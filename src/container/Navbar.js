@@ -37,7 +37,7 @@ const Navbar = () => {
       </div>
     </div>
   ) : (
-    <Redirect to="/login" />
+    <Redirect to="/" />
   );
 };
 export default Navbar;

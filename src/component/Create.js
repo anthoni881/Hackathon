@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./Create.css";
 import axios from "axios";
 import { InputText } from "./form";
@@ -44,14 +44,18 @@ const FormCreate = () => {
       title: titleState,
       message: messageState,
       month: monthState,
-      img: imageSplit
+      fileName: imageSplit
     };
     const headers = {
       "Content-Type": "application/json"
     };
-    await axios.post("http://10.58.89.92:8900/v1/offer/postOffer", createpost, {
-      headers
-    });
+    await axios.post(
+      "http://192.168.43.147:8900/v1/offer/postOffer",
+      createpost,
+      {
+        headers
+      }
+    );
   };
   const changeTitle = event => {
     setTitleState(event.target.value);

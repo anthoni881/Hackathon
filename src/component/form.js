@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./form.css";
 import { Redirect } from "react-router-dom";
 import Gambar from "../Images/Gambar.jpeg";
-import Gambar2 from "../Images/gambar.jpg";
+import Gambar2 from "../Images/Gambar3.jpeg";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
@@ -73,7 +73,7 @@ const Useridform = () => {
     };
     try {
       const result = await axios.post(
-        "http://10.58.89.92:8900/v1/storeLogin",
+        "http://192.168.43.147:8900/v1/storeLogin",
         LoginReq
       );
       const user = {
@@ -152,17 +152,6 @@ const FormLogin = () => {
             </div>
           </Carousel>
         </div>
-      </div>
-    </div>
-  );
-};
-const LoginNotif = props => {
-  const { popupshow, okClick } = props;
-  return (
-    <div className={popupshow ? "notifshow" : "notifclose"}>
-      <div className="pop">
-        <h2 onClick={okClick}>&times;</h2>
-        <p>Selamat! Promo Anda telah ditambahkan.</p>
       </div>
     </div>
   );
